@@ -1,10 +1,10 @@
 # Cruds_LB
 **Trabalho de Tópicos - 3 Cruds**
-<br>
+<br><br>
 Grupo:  Luisa Soares e Bernardo Farias
-<br>
+<br><br>
 Data de entrega: 07/12
-<br>
+<br><br>
 Itens Nescessários:<br>
  -3 cruds,<br>
  -Com sessão (controle de usuário),<br>
