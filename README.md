@@ -6,8 +6,8 @@ Grupo:  Luisa Soares
 Data de entrega: 07/12
 
 Itens Nescessários:
--3 cruds.
--Com sessão (controle de usuário).
--Com ajax e manipulção DOM.
--Usando git/github.
--Usando chatgpt.
+3 cruds.
+Com sessão (controle de usuário).
+Com ajax e manipulção DOM.
+Usando git/github.
+Usando chatgpt.
