@@ -3,12 +3,12 @@
 <br>
 Grupo:  Luisa Soares
         Bernardo Farias
-
+<br>
 Data de entrega: 07/12
-
-Itens Nescessários:
-3 cruds,
-Com sessão (controle de usuário),
-Com ajax e manipulção DOM,
-Usando git/github,
-Usando chatgpt;
+<br>
+Itens Nescessários:<br>
+3 cruds,<br>
+Com sessão (controle de usuário),<br>
+Com ajax e manipulção DOM,<br>
+Usando git/github,<br>
+Usando chatgpt;<br>
