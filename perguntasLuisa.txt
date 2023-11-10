@@ -1,0 +1,12 @@
+Perguntas feitas ao ChatGPT:
+-bom dia 
+-vamos programar em php, html e ajax ok?
+-vou lhe mandar alguns códigos para você usar de exemplo, para criar os próximos ok?
+-vamos usar sessões também
+-Esse é um exemplo de um código para conectar com o banco:
+-Esse é um exemplo de código de crud, onde faz o cadastro e o visualizar:
+-estou ainda te dando exemplos, espere para criara o código
+-Esse é exemplo de um código de excluir:
+-Quarto código é o listar.php
+-Quinto código é o salvar.php
+-Com base nos códigos de exemplo faça um crud de itens
