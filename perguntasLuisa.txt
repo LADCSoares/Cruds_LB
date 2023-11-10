@@ -9,4 +9,6 @@ Perguntas feitas ao ChatGPT:
 -Esse é exemplo de um código de excluir:
 -Quarto código é o listar.php
 -Quinto código é o salvar.php
--Com base nos códigos de exemplo faça um crud de itens
+-Com base nos códigos de exemplo faça um crud de itens em html, ajax e php
+-Vou te mandar um banco de dados para tu usar como exemplo para criar uma tabela, ok?
+-Com base no banco de dados que eu te mandei, faça uma tabela de banco de dados para o crud de itens que foi feito anteriormente 
