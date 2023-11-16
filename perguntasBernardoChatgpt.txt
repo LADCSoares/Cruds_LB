@@ -3,3 +3,5 @@
 - eu gostaria que tu criasse um listar do crud de usuário do código acima, nesse listar usuário preciso que seja feito em html e php com ajax e com banco mysql
 - eu gostaria que tu criasse um editar do listar usuário acima, usando como base os códigos que eu enviei como exemplo no começo, nesse listar com editar usuário preciso que seja feito em html e php com ajax e com banco mysql
 - eu gostaria que tu criasse um excluir do listar usuário acima, usando como base os códigos que eu enviei como exemplo no começo, nesse listar com excluir usuário preciso que seja feito em html e php com ajax e com banco mysql
+- eu gostaria que tu criasse um crud de celular, sem as funções de editar e excluir, utilizando a base do código inserido no inicio do chat, nesse crud preciso que seja feito em html e php com ajax e com o banco mysql
+- eu gostaria que tu criasse um editar do listar celular acima, usando como base os códigos que eu enviei como exemplo no começo do chat, nesse listar com editar celular preciso que seja feito em html e php com ajax e com banco mysql
