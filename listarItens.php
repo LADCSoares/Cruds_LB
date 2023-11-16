@@ -18,3 +18,4 @@ if ($resultado == TRUE) {
     die("Erro ao buscar os dados dos itens." . mysqli_errno($conexao) . ":" . mysqli_error($conexao));
 }
 ?>
+
