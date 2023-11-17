@@ -1,12 +1,12 @@
 <?php
-include "conectar.php";
+include "conexao.php";
 $conexao = conectar();
 
 $item = json_decode(file_get_contents("php://input"));
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $sql = "INSERT INTO itens (nome, descricao, preco) VALUES ('$item->nome', '$item->descricao', '$item->preco')";
-} elseif ($_SERVER['REQUEST_METHOD'] == "PUT") {
+} else if ($_SERVER['REQUEST_METHOD'] == "PUT") {
     $sql = "UPDATE itens SET nome='$item->nome', descricao='$item->descricao', preco='$item->preco' WHERE id=$item->id";
 }
 
