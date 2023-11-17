@@ -23,6 +23,7 @@
 </head>
 
 <body>
+    
     <?php
     include("conexao.php");
 
@@ -35,7 +36,8 @@
     ?>
 
     <h2>Bem-vindo à Página Inicial</h2>
-    <a href="logout.php">Logout</a>
+    <a href="logout.php">Logout</a><br>
+    <a href="cadastrarCelular.php">Celulares</a>
 
     <h3>Listagem de Usuários</h3>
 
@@ -81,6 +83,7 @@
         <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="confirmarExclusao()">Confirmar</a>
     </div>
 </div>
+
 
 
     <script>
