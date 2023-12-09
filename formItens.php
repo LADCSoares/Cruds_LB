@@ -2,198 +2,348 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD de Itens</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-      <!--Import Google Icon Font-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
-    <link rel="stylesheet" href="css/estilo.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Work+Sans">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Crud Cadeiras</title>
+    <style>
+  
+  .titulo {
+            font-family: "Roboto", sans-serif;
+        }
 
-    <!-- Baixa e usa CSS na CDN-->
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+        .topicos{
+		            font-family: "Roboto", sans-serif;
+		            font-size: 17px;
+		            font-weight: 800;
+                margin-left: 43px;;
+	            }
 
-    <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
- </head> 
+        .input-field .prefix.active{
+            color: black;
+        }
+
+        .ftabela{
+            font-family: "Work Sans", sans-serif;   
+        }
+
+        .borda{
+            margin-top: 3%;
+            border: 5px solid;
+        }
+
+        .centro{
+        margin-left: 900px;
+      }
+  
+      .logo1{
+        margin-left: 200px;
+      }
+      .logo2{
+        margin-right: 100px;
+      }
+
+    </style>
+</head>
 
 <body>
-    <h2>CRUD de Itens</h2> 
+    <section class="container ">
+        <div class="container col s6 offset-s3 borda orange lighten-5 ">
+        <div class="row">
+        <h3 class="center-align titulo"> Cadastrar Item </h3>
+            <article class="col s6 offset-s3">
+                <form id="form" onsubmit="return salvarItem(event);">
+                    <div class="input-field prefix-active">
+                        <!-- <i class="material-icons prefix">phone_iphone</i> -->
+                        <label class="active" for="id"> ID </label>
+                        <input type="text" name="id" required readonly>
+                    </div>
 
-    Formulário de Inserção
-    <form id="formInserir">
-        <label for="nome">Nome do Item:</label>
-        <input type="text" id="nome" name="nome" required><br>
+                    <div class="input-field prefix-active">
+                        <i class="material-icons prefix">fiber_manual_record</i>
+                        <label for="nome"> Nome </label>
+                        <input type="text" name="nome" required>
+                    </div>
 
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" required><br>
+                    <div class="input-field prefix.active">
+                        <i class="material-icons prefix">fiber_manual_record</i>
+                        <label for="descricao"> Descrição </label>
+                        <input type="text" name="descricao" required>
+                    </div>
 
-        <label for="preco">Preço:</label>
-        <input type="text" id="preco" name="preco" required><br>
+                    <div class="input-field prefix.active">
+                        <i class="material-icons prefix">attach_money</i>
+                        <label for="preço"> Preço </label>
+                        <input type="text" name="preco" required>
+                    </div> 
 
-        <button type="submit">Inserir Item</button>
-    </form>
+                
+                    <p class="center-align">
+                        <button class="waves-effect waves-light btn  white-text cyan accent-3 logar " type="submit">Cadastrar Item </button>
+                    </p>
 
-    <hr>
+                </form>
 
-    <!-- Tabela de Celulares -->
-    <table border="1" id="tabelaItens">
-        <thead>
+            </article>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="titulo">
+       <h3>Itens</h3>
+    </div>
+    </section>
+<div class="row">
+    <article class="col s10 offset-s1 ">
+    <table class="responsive-table striped ftabela">
+        <thead class="titulo">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Preço</th>
-                <th>Ações</th>
+                <th colspan="2">Opções</th>
             </tr>
         </thead>
-        <tbody id="listaItens">
-            <!-- A lista de celulares será carregada aqui usando Ajax -->
+        <tbody id="itens">
         </tbody>
     </table>
+    </article>
+</div>
 
-    <!-- Modal de Edição -->
-    <div id="modalEditar" class="modal">
-        <div class="modal-content">
-            <h4>Editar Item</h4>
-            <form id="formEditar">
-                <input type="hidden" id="editId" name="id">
-                <label for="editNome">Marca:</label>
-                <input type="text" id="editNome" name="nome" required><br>
-
-                <label for="editDescricao">Descrição:</label>
-                <input type="text" id="editDescricao" name="descricao" required><br>
-
-                <label for="editPreco">Preço:</label>
-                <input type="text" id="editPreco" name="preco" required><br>
-
-                <button type="submit">Salvar</button>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
+<br> <br> <br> <br> <br> <br> <br>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Excluir Item</h4>
+        <p>Tem certeza que deseja excluir este item?</p>
     </div>
+    <div class="modal-footer center">
+        <button id="btn-sim" class="modal-close waves-effect waves-green btn-flat" onclick="excluir();">Sim</button>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Não</a>
+    </div>
+</div>
+
+
+
+
 
     <script>
-        $(document).ready(function () {
-    function carregarCelulares() {
-        $.ajax({
-            url: 'listar_itens.php',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                var listaCelulares = $('#listaItens');
-                listaCelulares.empty();
-
-                for (var i = 0; i < data.length; i++) {
-                    var botaoEditar = '<button class="btn-editar" data-id="' + data[i].id + '" data-marca="' + data[i].marca +
-                        '" data-modelo="' + data[i].modelo + '" data-preco="' + data[i].preco + '">Editar</button>';
-
-                    var botaoExcluir = '<button class="btn-excluir" data-id="' + data[i].id + '">Excluir</button>';
-
-                    listaCelulares.append('<tr><td>' + data[i].id + '</td><td>' + data[i].marca + '</td><td>' + data[i].modelo +
-                        '</td><td>' + data[i].preco +
-                        '</td><td>' + botaoEditar + ' ' + botaoExcluir + '</td></tr>');
+        function editar(evt) {
+            let id = evt.currentTarget.paramId
+            let tBody = document.getElementById("itens");
+            for (const tr of tBody.children) {
+                if (tr.children[0].innerHTML == id) {
+                    let id = document.getElementsByName("id")[0];
+                    let nome = document.getElementsByName("nome")[0];
+                    let descricao = document.getElementsByName("descricao")[0]
+                    let preco = document.getElementsByName("preco")[0];
+                    id.value = tr.children[0].innerHTML;
+                    nome.value = tr.children[1].innerHTML;
+                    descricao.value = tr.children[2].innerHTML;
+                    preco.value = tr.children[3].innerHTML;
                 }
-
-                // Adiciona o evento de click para o botão excluir
-                $('.btn-excluir').click(function () {
-                    var id = $(this).data('id');
-                    if (confirm("Tem certeza que deseja excluir este celular?")) {
-                        excluirCelular(id);
-                    }
-                });
-
-                // Inicializa o modal
-                var modals = document.querySelectorAll('.modal');
-                M.Modal.init(modals);
-            },
-            error: function (xhr, status, error) {
-                console.error('Erro ao carregar a lista de celulares: ' + error);
             }
-        });
-    }
-
-    $('#formInserir').submit(function (e) {
-        e.preventDefault();
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: 'inserir_celular.php',
-            type: 'POST',
-            data: formData,
-            success: function () {
-                carregarCelulares();
-                $('#formInserir')[0].reset();
-            },
-            error: function (xhr, status, error) {
-                console.error('Erro ao inserir o celular: ' + error);
-            }
-        });
-    });
-
-    $('#formEditar').submit(function (e) {
-        e.preventDefault();
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: 'editar_celular.php',
-            type: 'POST',
-            data: formData,
-            success: function () {
-                carregarCelulares();
-                M.Modal.getInstance($('#modalEditar')).close(); // Feche o modal após a edição
-            },
-            error: function (xhr, status, error) {
-                console.error('Erro ao editar o celular: ' + error);
-            }
-        });
-    });
-
-    $(document).on('click', '.btn-editar', function () {
-        var id = $(this).data('id');
-        var marca = $(this).data('marca');
-        var modelo = $(this).data('modelo');
-        var preco = $(this).data('preco');
-        preencherFormEditar(id, marca, modelo, preco);
-    });
-
-    carregarCelulares();
-});
-
-function excluirCelular(id) {
-    $.ajax({
-        url: 'excluir_celular.php',
-        type: 'POST',
-        data: { id: id },
-        success: function () {
-            carregarCelulares();
-        },
-        error: function (xhr, status, error) {
-            console.error('Erro ao excluir o celular: ' + error);
         }
-    });
-}
+        function salvarItem(event) {
+            event.preventDefault();
+            let form = document.getElementById("form");
+                            let atividade = Object.fromEntries(new FormData(form).entries());
+            let editar = false;
 
-function preencherFormEditar(id, marca, modelo, preco) {
-    $('#editId').val(id);
-    $('#editMarca').val(marca);
-    $('#editModelo').val(modelo);
-    $('#editPreco').val(preco);
-    M.Modal.getInstance($('#modalEditar')).open(); // Abra o modal usando getInstance
-}
+            if (atividade.id == "") {
+               
+                fetch("salvarItem.php", {
+                    method: "POST",
+                    body: JSON.stringify(atividade), 
+                    headers: { 'Content-type': "application/json; charset=UTF-8" }
+                })
+                    //converte a resposta em json
+                    .then(response => response.json())
+                    .then(atividade => inserirItem(atividade))
+                    .catch(error => console.log(error));
+            }else{
+                fetch("salvarItem.php", {
+                    method: "PUT", //verbo de envio
+                    body: JSON.stringify(atividade), //informmações a serem enviadas
+                    headers: { 'Content-type': "application/json; charset=UTF-8" }
+                })
+                    //converte a resposta em json
+                    .then(response => response.json())
+                    .then(atividade => alterarItem(atividade))
+                    .catch(error => console.log(error));
 
 
-            carregarCelulares();
-        // });
+            }
+
+            form.reset();
+            return false;
+
+        }
+
+
+        function inserirItem(atividade) {
+            let tr = document.createElement("tr");
+            let tdId = document.createElement("td");
+            tdId.innerText = atividade.id;
+            let tdNome= document.createElement("td");
+            tdMaterial.innerText = atividade.nome;
+            let tdDescricao = document.createElement("td");
+            tdModelo.innerText = atividade.descricao;
+            let tdPreço = document.createElement("td");
+            tdPreço.innerText = atividade.preço;
+
+            let tdEditar = document.createElement("td");
+           // tdEditar.innerText = "Editar";
+
+            let btdEditar = document.createElement("button");
+            btdEditar.addEventListener("click", editar, false);
+            btdEditar.paramId = atividade.id;
+            btdEditar.innerHTML = "Editar";
+            btdEditar.classList.add('btn-floating');
+                btdEditar.classList.add('waves-effect');
+                btdEditar.classList.add('waves-light');
+                btdEditar.classList.add('modal-trigger');
+                btdEditar.classList.add('#795548');
+                btdEditar.classList.add('brown');
+                // btdEditar.classList.add('darken-4');
+                btdEditar.innerHTML = "<i class='material-icons'>create</i>";
+            tdEditar.appendChild(btdEditar);
+
+            let tdExcluir = document.createElement("td");
+
+
+            let btdExcluir = document.createElement("a");
+                btdExcluir.href = '#modal1';
+                btdExcluir.addEventListener("click", preencheId, false);
+                btdExcluir.paramId = atividade.id;
+                btdExcluir.classList.add('btn-floating');
+                btdExcluir.classList.add('waves-effect');
+                btdExcluir.classList.add('waves-light');
+                btdExcluir.classList.add('modal-trigger');
+                btdExcluir.classList.add('#795548');
+                btdExcluir.classList.add('brown');
+                // btdExcluir.classList.add('darken-4');
+                btdExcluir.innerHTML = "<i class='material-icons'>delete</i>";
+                tdExcluir.appendChild(btdExcluir);
+
+            // let btdExcluir = document.createElement("button");
+            // btdExcluir.addEventListener("click", excluir, false);
+            // btdExcluir.paramId = atividade.id;
+            // btdExcluir.innerHTML = "Excluir";
+            // tdExcluir.appendChild(btdExcluir);
+
+
+            tr.appendChild(tdId);
+            tr.appendChild(tdNome);
+            tr.appendChild(tdDescricao);
+            tr.appendChild(tdPreço);
+            tr.appendChild(tdEditar);
+            tr.appendChild(tdExcluir);
+            let tBody = document.getElementById("itens");
+            tBody.appendChild(tr);
+        }
+
+        function alterarItem(atividade) {
+            let tBody = document.getElementById("itens");
+            for (const tr of tBody.children) {
+                if (tr.children[0].innerHTML == atividade.id) {
+                    tr.children[1].innerHTML = atividade.nome;
+                    tr.children[2].innerHTML = atividade.descricao;
+                    tr.children[3].innerHTML = atividade.preço;
+                }
+            }
+            
+        }
+
+        function excluir() {
+                //let id = evt.currentTarget.paramId;
+                fetch("excluirItem.php?id=" + id, {
+                        method: "GET", //verbo de envio
+                        //body: JSON.stringify(atividade), //informmações a serem enviadas
+                        headers: {
+                            'Content-type': "application/json; charset=UTF-8"
+                        }
+                    })
+                    //converte a resposta em json
+                    .then(response => response.json())
+                    .then(atividade => excluirItem(atividade))
+                    .catch(error => console.log(error));
+            }
+
+        // function excluir() {
+           
+        //     if (excluir == true) {
+        //         let id = evt.currentTarget.paramId;
+        //         fetch("excluir.php?id=" + id, {
+        //             method: "GET", //verbo de envio
+        //             //body: JSON.stringify(atividade), //informmações a serem enviadas
+        //             headers: { 'Content-type': "application/json; charset=UTF-8" }
+        //         })
+        //             //converte a resposta em json
+        //             .then(response => response.json())
+        //             .then(atividade => excluirItem(atividade))
+        //             .catch(error => console.log(error));
+
+        //         }        
+        //     }
+        
+            function excluirItem(atividade){
+                let tBody = document.getElementById("itens");
+                for (const tr of tBody.children) {
+                    if (tr.children[0].innerHTML == atividade.id) {
+                        tBody.removeChild(tr);
+                    }
+                }
+            }
+
+         function listarTodos(){
+            fetch("listarItem.php", {
+                    method: "GET", //verbo de envio
+                    //body: JSON.stringify(atividade), //informmações a serem enviadas
+                    headers: { 'Content-type': "application/json; charset=UTF-8" }
+                })
+                    //converte a resposta em json
+                    .then(response => response.json())
+                    .then(itens => inserirItem(itens))
+                    .catch(error => console.log(error));
+
+
+         }
+
+         function inserirItem(itens){
+            for (const atividade of itens){
+                inserirItem(atividade);
+            }
+         }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+                listarTodos();
+                var elems = document.querySelectorAll('.modal');
+                var instances = M.Modal.init(elems);
+            });
+
+            function preencheId(evt) {
+                id = evt.currentTarget.paramId;
+                /*let id = evt.currentTarget.paramId;
+                let btnSim = document.getElementById("btn-sim");
+                btnSim.href = "excluir.php?id=" + id;*/
+            }
+            
+            var id = -1;
+
+
+// Javascript do materialize
+                //  $(document).ready(function() {
+                // M.updateTextFields();
+                //  });
+
+
     </script>
-     <script type="text/javascript" src="js/materialize.js"></script>
 </body>
 
 </html>
